@@ -1,1 +1,1426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HungryZone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="logo">
+            HUNGRYZONE
+        </div>
+
+        <nav class="menu">
+
+            <a href="#" id="homeLink" class="nav-link active">
+                Início
+            </a>
+
+            <a href="#" id="ordersLink" class="nav-link">
+                Meus pedidos
+            </a>
+
+        </nav>
+
+        <div class="header-right">
+
+            <a href="#" class="help-link" id="helpLink">
+                Ajuda?
+            </a>
+
+            <button
+                class="cart-button"
+                id="cartButton"
+                title="Carrinho"
+                type="button"
+            >
+                <span class="cart-icon">🛒</span>
+
+                <span
+                    class="cart-counter"
+                    id="cartCounter"
+                >
+                    0
+                </span>
+            </button>
+
+            <button
+                class="icon-button"
+                id="profileButton"
+                title="Perfil"
+                type="button"
+            >
+                ♙
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         HOME
+    ====================================================== -->
+
+    <main id="homePage" class="page active-page">
+
+        <div class="container">
+
+            <h1>
+                SEU PEDIDO, DO SEU JEITO
+            </h1>
+
+            <!-- BARRA DE PESQUISA DE PRODUTOS -->
+            <div class="product-search">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input
+                    type="search"
+                    id="productSearchInput"
+                    placeholder="Buscar produto... Ex.: Coca-Cola, pizza, hambúrguer"
+                    aria-label="Buscar produtos"
+                    autocomplete="off"
+                >
+                <button type="button" id="clearProductSearch" class="clear-search" aria-label="Limpar pesquisa" title="Limpar pesquisa">×</button>
+            </div>
+
+
+            <!-- BANNER -->
+
+            <section class="banner" aria-label="Promoções do dia">
+                <div class="banner-glow banner-glow-one"></div>
+                <div class="banner-glow banner-glow-two"></div>
+                <div class="banner-track" id="promoBannerTrack">
+                    <article class="promo-slide promo-slide-red active" data-category="mais-pedidos" aria-hidden="false">
+                        <div class="banner-text">
+                            <span class="promo-kicker"><span class="promo-live-dot"></span> DESTAQUE DO DIA</span>
+                            <h2>COMBO CHICKEN</h2>
+                            <p>Seu momento crocante chegou!<br><strong>Combo Chicken por R$ 20,99</strong></p>
+                            <button type="button" class="promo-cta" data-promo-action="products">Pedir agora <span>↗</span></button>
+                            <span class="promo-note">Sabor que melhora qualquer dia ✨</span>
+                        </div>
+                        <div class="banner-image"><img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=800&q=85" alt="Combo de frango crocante com acompanhamento" loading="eager"></div>
+                        <span class="promo-sticker">🍗<small>TOP<br>PEDIDO</small></span>
+                    </article>
+                    <article class="promo-slide promo-slide-gold" data-category="pizzas" aria-hidden="true">
+                        <div class="banner-text">
+                            <span class="promo-kicker"><span class="promo-live-dot"></span> HOJE COMBINA COM</span>
+                            <h2>NOITE DE PIZZA</h2>
+                            <p>Pizza de Pepperoni por <strong>R$ 20,99</strong>.<br>Uma fatia de felicidade em cada pedaço.</p>
+                            <button type="button" class="promo-cta" data-promo-action="pizzas">Quero pizza <span>↗</span></button>
+                            <span class="promo-note">Perfeita para dividir… ou não 😋</span>
+                        </div>
+                        <div class="banner-image"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=85" alt="Pizza de pepperoni recém-assada" loading="lazy"></div>
+                        <span class="promo-sticker">🍕<small>FEITA<br>PRA VOCÊ</small></span>
+                    </article>
+                    <article class="promo-slide promo-slide-green" data-category="porcoes" aria-hidden="true">
+                        <div class="banner-text">
+                            <span class="promo-kicker"><span class="promo-live-dot"></span> PAUSA MAIS GOSTOSA</span>
+                            <h2>FRITAS + CHEDDAR</h2>
+                            <p>Batata crocante com muito cheddar<br>por <strong>R$ 16,99</strong>.</p>
+                            <button type="button" class="promo-cta" data-promo-action="porcoes">Quero essa <span>↗</span></button>
+                            <span class="promo-note">Aviso: difícil comer só uma 🍟</span>
+                        </div>
+                        <div class="banner-image"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=85" alt="Batatas fritas douradas e crocantes" loading="lazy"></div>
+                        <span class="promo-sticker">🍟<small>CRUNCH<br>TIME</small></span>
+                    </article>
+                </div>
+                <div class="promo-progress" aria-hidden="true"><span id="promoProgressBar"></span></div>
+                <button class="promo-arrow promo-prev" type="button" aria-label="Promoção anterior">‹</button>
+                <button class="promo-arrow promo-next" type="button" aria-label="Próxima promoção">›</button>
+                <div class="promo-dots" id="promoDots" aria-label="Escolher promoção">
+                    <button type="button" class="promo-dot active" aria-label="Promoção 1" data-slide="0"></button>
+                    <button type="button" class="promo-dot" aria-label="Promoção 2" data-slide="1"></button>
+                    <button type="button" class="promo-dot" aria-label="Promoção 3" data-slide="2"></button>
+                </div>
+            </section>
+
+
+            <!-- =================================================
+                 CATEGORIAS
+            ================================================== -->
+
+            <section class="categories">
+
+                <button
+                    type="button"
+                    class="category-button active"
+                    data-category="mais-pedidos"
+                >
+                    🍔 Mais pedidos
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="hamburgueres"
+                >
+                    🍔 Hambúrgueres
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="pizzas"
+                >
+                    🍕 Pizzas
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="porcoes"
+                >
+                    🍟 Porções
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="naturais"
+                >
+                    🥤 Bebidas Naturais
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="refrigerantes"
+                >
+                    🥤 Refrigerantes
+                </button>
+
+                <button
+                    type="button"
+                    class="category-button"
+                    data-category="sobremesas"
+                >
+                    🍰 Sobremesas
+                </button>
+
+            </section>
+
+
+            <!-- =================================================
+                 PRODUTOS
+            ================================================== -->
+
+            <section class="products">
+
+                <div class="products-heading">
+
+                    <div>
+
+                        <span class="products-small-title">
+                            HUNGRYZONE
+                        </span>
+
+                        <h2 id="productsTitle">
+                            MAIS PEDIDOS
+                        </h2>
+
+                    </div>
+
+                    <span
+                        id="productsCount"
+                        class="products-count"
+                    >
+                        8 opções
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="products-grid"
+                    id="productsGrid"
+                ></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MEUS PEDIDOS
+    ====================================================== -->
+
+    <main id="ordersPage" class="page">
+
+        <div class="orders-container">
+
+            <div class="orders-header">
+
+                <div>
+
+                    <span class="orders-small-title">
+                        HUNGRYZONE
+                    </span>
+
+                    <h1>
+                        Meus pedidos
+                    </h1>
+
+                    <p>
+                        Acompanhe seus pedidos e veja o que você já pediu.
+                    </p>
+
+                </div>
+
+                <div class="orders-icon">
+                    🛍️
+                </div>
+
+            </div>
+
+
+            <section class="order-section">
+
+                <div class="section-title">
+
+                    <h2>
+                        Pedido em andamento
+                    </h2>
+
+                    <span class="order-count">
+                        1 pedido
+                    </span>
+
+                </div>
+
+                <article class="order-card current-order">
+
+                    <div class="order-top">
+
+                        <div>
+
+                            <span class="order-number">
+                                PEDIDO #1048
+                            </span>
+
+                            <h3>
+                                Pedido em preparo
+                            </h3>
+
+                        </div>
+
+                        <span class="status preparing">
+                            Em preparo
+                        </span>
+
+                    </div>
+
+                    <div class="order-progress">
+
+                        <div class="progress-step completed">
+                            <div class="progress-circle">✓</div>
+                            <span>Pedido recebido</span>
+                        </div>
+
+                        <div class="progress-line completed-line"></div>
+
+                        <div class="progress-step active">
+                            <div class="progress-circle">🍔</div>
+                            <span>Em preparo</span>
+                        </div>
+
+                        <div class="progress-line"></div>
+
+                        <div class="progress-step">
+                            <div class="progress-circle">🛵</div>
+                            <span>A caminho</span>
+                        </div>
+
+                        <div class="progress-line"></div>
+
+                        <div class="progress-step">
+                            <div class="progress-circle">✓</div>
+                            <span>Entregue</span>
+                        </div>
+
+                    </div>
+
+                    <div class="order-items">
+
+                        <div class="order-item">
+
+                            <div class="item-image">
+                                🍔
+                            </div>
+
+                            <div class="item-info">
+
+                                <strong>
+                                    Combo Chicken
+                                </strong>
+
+                                <span>
+                                    1x • Hambúrguer + Batata + Refrigerante
+                                </span>
+
+                            </div>
+
+                            <strong>
+                                R$ 20,99
+                            </strong>
+
+                        </div>
+
+                        <div class="order-item">
+
+                            <div class="item-image">
+                                🍟
+                            </div>
+
+                            <div class="item-info">
+
+                                <strong>
+                                    Fritas C/ Cheddar
+                                </strong>
+
+                                <span>
+                                    1x • Porção média
+                                </span>
+
+                            </div>
+
+                            <strong>
+                                R$ 16,99
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="order-bottom">
+
+                        <div>
+
+                            <span class="order-date">
+                                Hoje
+                            </span>
+
+                            <strong class="total">
+                                Total: R$ 37,98
+                            </strong>
+
+                        </div>
+
+                        <button
+                            class="details-button"
+                            type="button"
+                        >
+                            Ver detalhes
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <section class="order-section history">
+
+                <div class="section-title">
+
+                    <h2>
+                        Histórico de pedidos
+                    </h2>
+
+                    <span class="order-count">
+                        2 pedidos
+                    </span>
+
+                </div>
+
+
+                <article class="order-card history-card">
+
+                    <div class="history-main">
+
+                        <div class="history-icon">
+                            🍕
+                        </div>
+
+                        <div class="history-info">
+
+                            <span class="order-number">
+                                PEDIDO #1039
+                            </span>
+
+                            <h3>
+                                Pizza de Pepperoni
+                            </h3>
+
+                            <p>
+                                1x Pizza de Pepperoni
+                            </p>
+
+                            <span class="history-date">
+                                24 de setembro de 2026
+                            </span>
+
+                        </div>
+
+                        <div class="history-price">
+
+                            <strong>
+                                R$ 20,99
+                            </strong>
+
+                            <span class="status delivered">
+                                Entregue
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="repeat-button"
+                        type="button"
+                        data-product="pizza-pepperoni"
+                    >
+                        Pedir novamente
+                    </button>
+
+                </article>
+
+
+                <article class="order-card history-card">
+
+                    <div class="history-main">
+
+                        <div class="history-icon">
+                            🍟
+                        </div>
+
+                        <div class="history-info">
+
+                            <span class="order-number">
+                                PEDIDO #1027
+                            </span>
+
+                            <h3>
+                                Fritas C/ Cheddar
+                            </h3>
+
+                            <p>
+                                2x Fritas C/ Cheddar
+                            </p>
+
+                            <span class="history-date">
+                                19 de setembro de 2026
+                            </span>
+
+                        </div>
+
+                        <div class="history-price">
+
+                            <strong>
+                                R$ 33,98
+                            </strong>
+
+                            <span class="status delivered">
+                                Entregue
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="repeat-button"
+                        type="button"
+                        data-product="fritas-cheddar"
+                    >
+                        Pedir novamente
+                    </button>
+
+                </article>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         CARRINHO
+    ====================================================== -->
+
+    <main id="cartPage" class="page">
+
+        <div class="cart-container">
+
+            <div class="cart-header">
+
+                <div>
+
+                    <span class="cart-small-title">
+                        HUNGRYZONE
+                    </span>
+
+                    <h1>
+                        Seu carrinho
+                    </h1>
+
+                    <p>
+                        Confira seus itens antes de finalizar o pedido.
+                    </p>
+
+                </div>
+
+                <div class="big-cart-icon">
+                    🛒
+                </div>
+
+            </div>
+
+
+            <div class="cart-layout">
+
+                <section class="cart-products">
+
+                    <div class="cart-list-header">
+
+                        <h2>
+                            Seus itens
+                        </h2>
+
+                        <span id="cartItemsText">
+                            0 itens
+                        </span>
+
+                    </div>
+
+                    <div id="cartItems"></div>
+
+                    <div
+                        id="emptyCart"
+                        class="empty-cart"
+                    >
+
+                        <div class="empty-cart-icon">
+                            🛒
+                        </div>
+
+                        <h2>
+                            Seu carrinho está vazio
+                        </h2>
+
+                        <p>
+                            Adicione seus pratos favoritos
+                            para começar seu pedido.
+                        </p>
+
+                        <button
+                            id="emptyCartButton"
+                            class="continue-button"
+                            type="button"
+                        >
+                            Ver produtos
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <aside class="cart-summary">
+
+                    <div class="summary-header">
+
+                        <h2>
+                            Resumo do pedido
+                        </h2>
+
+                        <span>🧾</span>
+
+                    </div>
+
+                    <div class="summary-lines">
+
+                        <div class="summary-line">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+                            <strong id="subtotal">
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-line">
+
+                            <span>
+                                Taxa de entrega
+                            </span>
+
+                            <strong id="delivery">
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong id="total">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+                    <button
+                        id="checkoutButton"
+                        class="checkout-button"
+                        type="button"
+                    >
+                        Finalizar pedido
+                    </button>
+
+                    <button
+                        id="continueButton"
+                        class="continue-button"
+                        type="button"
+                    >
+                        ← Continuar comprando
+                    </button>
+
+                    <div class="secure-message">
+                        🔒 Pagamento seguro
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MODAL DE CLIENTE
+    ====================================================== -->
+
+    <div
+        id="customerOverlay"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div class="customer-modal">
+
+            <button
+                class="modal-close"
+                id="closeCustomerModal"
+                type="button"
+            >
+                ×
+            </button>
+
+            <div class="modal-brand">
+                HUNGRYZONE
+            </div>
+
+            <h2>
+                Identifique-se
+            </h2>
+
+            <p class="modal-description">
+                Precisamos dos seus dados para entregar seu pedido.
+            </p>
+
+            <div class="customer-tabs">
+
+                <button
+                    type="button"
+                    class="customer-tab active"
+                    data-tab="register"
+                >
+                    Criar cadastro
+                </button>
+
+                <button
+                    type="button"
+                    class="customer-tab"
+                    data-tab="login"
+                >
+                    Já tenho cadastro
+                </button>
+
+            </div>
+
+
+            <form
+                id="registerForm"
+                class="customer-form"
+            >
+
+                <label>
+                    Nome completo
+                    <input
+                        id="customerName"
+                        type="text"
+                        placeholder="Digite seu nome"
+                        required
+                    >
+                </label>
+
+                <label>
+                    CPF
+                    <input
+                        id="customerCPF"
+                        type="text"
+                        placeholder="000.000.000-00"
+                        maxlength="14"
+                        required
+                    >
+                </label>
+
+                <label>
+                    Telefone
+                    <input
+                        id="customerPhone"
+                        type="tel"
+                        placeholder="(11) 99999-9999"
+                        maxlength="15"
+                        required
+                    >
+                </label>
+
+                <label>
+                    E-mail
+                    <input
+                        id="customerEmail"
+                        type="email"
+                        placeholder="seuemail@email.com"
+                        required
+                    >
+                </label>
+
+                <label>
+                    Senha
+                    <input
+                        id="customerPassword"
+                        type="password"
+                        placeholder="Crie uma senha"
+                        minlength="4"
+                        required
+                    >
+                </label>
+
+                <div class="address-title">
+                    📍 Endereço de entrega
+                </div>
+
+                <label>
+                    CEP
+                    <input
+                        id="customerCEP"
+                        type="text"
+                        placeholder="00000-000"
+                        maxlength="9"
+                        required
+                    >
+                </label>
+
+                <div class="form-row">
+
+                    <label>
+                        Rua
+                        <input
+                            id="customerStreet"
+                            type="text"
+                            placeholder="Rua"
+                            required
+                        >
+                    </label>
+
+                    <label class="small-field">
+                        Nº
+                        <input
+                            id="customerNumber"
+                            type="text"
+                            placeholder="123"
+                            required
+                        >
+                    </label>
+
+                </div>
+
+                <label>
+                    Complemento
+                    <input
+                        id="customerComplement"
+                        type="text"
+                        placeholder="Apartamento, casa..."
+                    >
+                </label>
+
+                <label>
+                    Bairro
+                    <input
+                        id="customerNeighborhood"
+                        type="text"
+                        placeholder="Bairro"
+                        required
+                    >
+                </label>
+
+                <button
+                    class="primary-modal-button"
+                    type="submit"
+                >
+                    Continuar para pagamento →
+                </button>
+
+            </form>
+
+
+            <form
+                id="loginForm"
+                class="customer-form hidden"
+            >
+
+                <label>
+                    E-mail
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="seuemail@email.com"
+                        required
+                    >
+                </label>
+
+                <label>
+                    Senha
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Sua senha"
+                        required
+                    >
+                </label>
+
+                <button
+                    class="primary-modal-button"
+                    type="submit"
+                >
+                    Entrar e continuar →
+                </button>
+
+            </form>
+
+            <p
+                id="customerError"
+                class="form-error"
+            ></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGAMENTO
+    ====================================================== -->
+
+    <div
+        id="paymentOverlay"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div class="payment-modal">
+
+            <button
+                class="modal-close"
+                id="closePaymentModal"
+                type="button"
+            >
+                ×
+            </button>
+
+            <div class="modal-brand">
+                HUNGRYZONE
+            </div>
+
+            <div class="payment-header">
+
+                <div>
+
+                    <span>
+                        FINALIZAÇÃO
+                    </span>
+
+                    <h2>
+                        Forma de pagamento
+                    </h2>
+
+                </div>
+
+                <div class="payment-total">
+                    <small>Total</small>
+                    <strong id="paymentTotal">R$ 0,00</strong>
+                </div>
+
+            </div>
+
+
+            <div class="payment-methods">
+
+                <button
+                    class="payment-method active"
+                    data-method="pix"
+                    type="button"
+                >
+                    <span>🟢</span>
+                    <strong>PIX</strong>
+                    <small>Pagamento instantâneo</small>
+                </button>
+
+                <button
+                    class="payment-method"
+                    data-method="card"
+                    type="button"
+                >
+                    <span>💳</span>
+                    <strong>Cartão</strong>
+                    <small>Crédito ou débito</small>
+                </button>
+
+                <button
+                    class="payment-method"
+                    data-method="cash"
+                    type="button"
+                >
+                    <span>💵</span>
+                    <strong>Dinheiro</strong>
+                    <small>Pagamento na entrega</small>
+                </button>
+
+            </div>
+
+
+            <div
+                id="pixPayment"
+                class="payment-content active"
+            >
+
+                <div class="pix-box">
+
+                    <div class="pix-qr">
+                        <div class="fake-qr">
+                            <span>▦</span>
+                        </div>
+                    </div>
+
+                    <h3>
+                        Pague com PIX
+                    </h3>
+
+                    <p>
+                        Escaneie o QR Code ou copie o código abaixo.
+                    </p>
+
+                    <div class="pix-copy">
+
+                        <input
+                            id="pixCode"
+                            type="text"
+                            readonly
+                        >
+
+                        <button
+                            id="copyPixButton"
+                            type="button"
+                        >
+                            Copiar
+                        </button>
+
+                    </div>
+
+                    <span
+                        id="pixCopied"
+                        class="copied-message"
+                    >
+                        Código copiado!
+                    </span>
+
+                </div>
+
+                <button
+                    id="pixConfirmButton"
+                    class="payment-confirm-button"
+                    type="button"
+                >
+                    Já fiz o pagamento →
+                </button>
+
+            </div>
+
+
+            <div
+                id="cardPayment"
+                class="payment-content"
+            >
+
+                <div class="card-preview">
+
+                    <div class="card-chip">
+                        ▪▪
+                    </div>
+
+                    <div class="card-number-preview">
+                        <span id="cardPreviewNumber">
+                            •••• •••• •••• ••••
+                        </span>
+                    </div>
+
+                    <div class="card-preview-bottom">
+
+                        <span id="cardPreviewName">
+                            SEU NOME
+                        </span>
+
+                        <span id="cardPreviewExpiry">
+                            MM/AA
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <form id="cardForm">
+
+                    <label>
+                        Número do cartão
+                        <input
+                            id="cardNumber"
+                            type="text"
+                            inputmode="numeric"
+                            maxlength="19"
+                            placeholder="0000 0000 0000 0000"
+                            required
+                        >
+                    </label>
+
+                    <label>
+                        Nome no cartão
+                        <input
+                            id="cardName"
+                            type="text"
+                            placeholder="NOME COMPLETO"
+                            required
+                        >
+                    </label>
+
+                    <div class="form-row">
+
+                        <label>
+                            Validade
+                            <input
+                                id="cardExpiry"
+                                type="text"
+                                inputmode="numeric"
+                                maxlength="5"
+                                placeholder="MM/AA"
+                                required
+                            >
+                        </label>
+
+                        <label>
+                            CVV
+                            <input
+                                id="cardCVV"
+                                type="password"
+                                inputmode="numeric"
+                                maxlength="4"
+                                placeholder="123"
+                                required
+                            >
+                        </label>
+
+                    </div>
+
+                    <label>
+                        Tipo
+                        <select id="cardType">
+
+                            <option value="credito">
+                                Cartão de crédito
+                            </option>
+
+                            <option value="debito">
+                                Cartão de débito
+                            </option>
+
+                        </select>
+                    </label>
+
+                    <div id="installmentBox">
+
+                        <label>
+                            Parcelas
+                            <select id="installments">
+
+                                <option value="1">1x sem juros</option>
+                                <option value="2">2x sem juros</option>
+                                <option value="3">3x sem juros</option>
+                                <option value="4">4x sem juros</option>
+                                <option value="5">5x sem juros</option>
+
+                            </select>
+                        </label>
+
+                    </div>
+
+                    <button
+                        class="payment-confirm-button"
+                        type="submit"
+                    >
+                        Pagar com cartão →
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div
+                id="cashPayment"
+                class="payment-content"
+            >
+
+                <div class="cash-box">
+
+                    <div class="cash-icon">
+                        💵
+                    </div>
+
+                    <h3>
+                        Pagamento em dinheiro
+                    </h3>
+
+                    <p>
+                        O pagamento será feito ao entregador.
+                    </p>
+
+                    <div class="cash-question">
+                        Precisa de troco?
+                    </div>
+
+                    <div class="cash-options">
+
+                        <button
+                            class="cash-option active"
+                            data-change="no"
+                            type="button"
+                        >
+                            Não preciso
+                        </button>
+
+                        <button
+                            class="cash-option"
+                            data-change="yes"
+                            type="button"
+                        >
+                            Sim, preciso
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="changeBox"
+                        class="change-box hidden"
+                    >
+
+                        <label>
+                            Troco para quanto?
+
+                            <div class="money-input">
+
+                                <span>R$</span>
+
+                                <input
+                                    id="changeFor"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="0,00"
+                                >
+
+                            </div>
+
+                        </label>
+
+                        <div
+                            id="changeResult"
+                            class="change-result"
+                        >
+                            Informe o valor para calcular o troco.
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button
+                    id="cashConfirmButton"
+                    class="payment-confirm-button"
+                    type="button"
+                >
+                    Confirmar pedido →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CENTRAL DE AJUDA
+    ====================================================== -->
+    <main id="helpPage" class="page help-page">
+        <section class="help-hero">
+            <span class="help-eyebrow">HUNGRYZONE • CENTRAL DE AJUDA</span>
+            <h1>Como podemos ajudar você?</h1>
+            <p>Encontre respostas rápidas sobre seus pedidos, pagamentos e sua conta.</p>
+            <label class="help-search-wrap"><span aria-hidden="true">⌕</span>
+                <input id="helpSearchInput" type="search" placeholder="Busque por um assunto..." aria-label="Buscar ajuda">
+                <button id="clearHelpSearch" type="button" aria-label="Limpar busca">×</button>
+            </label>
+        </section>
+        <section class="help-topics" aria-label="Assuntos de ajuda">
+            <button class="help-topic" type="button" data-help-target="pedidos"><span class="help-topic-icon">🛵</span><strong>Meus pedidos</strong><small>Acompanhe e repita pedidos</small></button>
+            <button class="help-topic" type="button" data-help-target="pagamentos"><span class="help-topic-icon">💳</span><strong>Pagamentos</strong><small>PIX, cartão e dinheiro</small></button>
+            <button class="help-topic" type="button" data-help-target="conta"><span class="help-topic-icon">👤</span><strong>Minha conta</strong><small>Cadastro e endereço</small></button>
+            <button class="help-topic" type="button" data-help-target="faq"><span class="help-topic-icon">❔</span><strong>Perguntas frequentes</strong><small>Respostas rápidas</small></button>
+            <button class="help-topic" type="button" data-help-target="contato"><span class="help-topic-icon">💬</span><strong>Fale conosco</strong><small>Envie sua dúvida</small></button>
+        </section>
+        <section class="help-content">
+            <div class="help-section" id="pedidos">
+                <h2>🛵 Ajuda com pedidos</h2>
+                <button class="help-question" type="button" aria-expanded="false"><span>Onde vejo meus pedidos?</span><b>＋</b></button>
+                <div class="help-answer"><p>Clique em <strong>Meus pedidos</strong> no menu superior para consultar o pedido em andamento e seu histórico.</p><button class="help-action" type="button" data-help-action="orders">Ver meus pedidos</button></div>
+                <button class="help-question" type="button" aria-expanded="false"><span>Como faço para pedir novamente?</span><b>＋</b></button>
+                <div class="help-answer"><p>Na área <strong>Meus pedidos</strong>, use o botão “Pedir novamente” em um pedido do histórico para adicionar o produto ao carrinho.</p><button class="help-action" type="button" data-help-action="orders">Abrir meus pedidos</button></div>
+            </div>
+            <div class="help-section" id="pagamentos">
+                <h2>💳 Pagamentos</h2>
+                <button class="help-question" type="button" aria-expanded="false"><span>Quais formas de pagamento estão disponíveis?</span><b>＋</b></button>
+                <div class="help-answer"><p>Na finalização, confira as opções disponíveis na tela de pagamento: PIX, cartão e dinheiro, conforme configurado nesta demonstração.</p></div>
+                <button class="help-question" type="button" aria-expanded="false"><span>Como confiro o valor total?</span><b>＋</b></button>
+                <div class="help-answer"><p>Abra o carrinho para revisar os produtos, quantidades, taxa de entrega e total antes de finalizar o pedido.</p><button class="help-action" type="button" data-help-action="cart">Abrir carrinho</button></div>
+            </div>
+            <div class="help-section" id="conta">
+                <h2>👤 Minha conta</h2>
+                <button class="help-question" type="button" aria-expanded="false"><span>Como cadastro meus dados?</span><b>＋</b></button>
+                <div class="help-answer"><p>Clique no ícone de perfil no topo da página para abrir a área de cadastro e preencher seus dados.</p><button class="help-action" type="button" data-help-action="profile">Abrir cadastro</button></div>
+                <button class="help-question" type="button" aria-expanded="false"><span>Posso revisar meu endereço?</span><b>＋</b></button>
+                <div class="help-answer"><p>Abra seu perfil e confira os dados de entrega cadastrados antes de concluir uma compra.</p><button class="help-action" type="button" data-help-action="profile">Ver perfil</button></div>
+            </div>
+            <div class="help-section" id="faq">
+                <h2>❔ Perguntas frequentes</h2>
+                <button class="help-question" type="button" aria-expanded="false"><span>Como adiciono um produto ao carrinho?</span><b>＋</b></button>
+                <div class="help-answer"><p>Volte ao início, escolha uma categoria e clique no botão para adicionar o produto. Você pode buscar pelo nome usando a barra de pesquisa.</p><button class="help-action" type="button" data-help-action="home">Ir para o início</button></div>
+                <button class="help-question" type="button" aria-expanded="false"><span>O que faço se não encontrar um produto?</span><b>＋</b></button>
+                <div class="help-answer"><p>Confira a escrita na busca ou apague o filtro para ver todos os produtos disponíveis no catálogo.</p><button class="help-action" type="button" data-help-action="home">Buscar produtos</button></div>
+            </div>
+            <div class="help-contact" id="contato">
+                <div><span class="help-eyebrow">AINDA PRECISA DE AJUDA?</span><h2>Fale com a HungryZone</h2><p>Descreva sua dúvida. Vamos preparar uma mensagem para você enviar por e-mail.</p></div>
+                <form id="helpContactForm">
+                    <label for="helpContactName">Seu nome</label><input id="helpContactName" name="name" required placeholder="Como podemos chamar você?">
+                    <label for="helpContactEmail">Seu e-mail</label><input id="helpContactEmail" name="email" type="email" required placeholder="voce@email.com">
+                    <label for="helpContactMessage">Como podemos ajudar?</label><textarea id="helpContactMessage" name="message" required rows="4" placeholder="Conte um pouco mais sobre sua dúvida..."></textarea>
+                    <button class="help-submit" type="submit">Preparar mensagem</button><p class="help-form-note" id="helpFormStatus" role="status"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- =====================================================
+         PROCESSAMENTO
+    ====================================================== -->
+
+    <div
+        id="preparingOverlay"
+        class="preparing-overlay"
+    ></div>
+
+
+
+    <!-- PERSONALIZAÇÃO DO PRODUTO -->
+    <div id="ingredientModal" class="ingredient-modal" aria-hidden="true">
+      <div class="ingredient-backdrop" data-close-ingredients></div>
+      <section class="ingredient-dialog" role="dialog" aria-modal="true" aria-labelledby="ingredientTitle">
+        <button type="button" class="ingredient-close" id="closeIngredientModal" aria-label="Fechar">×</button>
+        <div class="ingredient-modal-top"><span class="ingredient-kicker">HUNGRYZONE • DO SEU JEITO</span><h2 id="ingredientTitle">Personalize seu pedido</h2><p>Retire os ingredientes que você não gosta.</p></div>
+        <div class="ingredient-product">
+          <img id="ingredientProductImage" src="" alt="">
+          <div><h3 id="ingredientProductName"></h3><strong id="ingredientProductPrice"></strong></div>
+        </div>
+        <div class="ingredient-list-heading"><strong>Ingredientes</strong><span>Desmarque para retirar</span></div>
+        <div id="ingredientOptions" class="ingredient-options"></div>
+        <div class="ingredient-list-heading paid-extras-heading"><strong>Quer incrementar?</strong><span>Adicionais pagos</span></div>
+        <div id="paidExtrasOptions" class="ingredient-options"></div>
+        <div class="ingredient-modal-footer"><span>Total <strong id="ingredientModalPrice"></strong></span><button type="button" id="confirmIngredients" class="ingredient-confirm">Adicionar ao carrinho <span>→</span></button></div>
+      </section>
+    </div>
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <span>
+            © HungryZone
+        </span>
+
+        <span>
+            Delivery rápido • Sabor de verdade
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
